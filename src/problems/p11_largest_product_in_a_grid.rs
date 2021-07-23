@@ -7,11 +7,6 @@ struct FlatMatrix {
     values: Vec<usize>,
 }
 
-struct Coords {
-    x: usize,
-    y: usize,
-}
-
 impl FlatMatrix {
     pub fn new(values: Vec<usize>) -> FlatMatrix {
         let width = (values.len() as f64).sqrt() as usize;
