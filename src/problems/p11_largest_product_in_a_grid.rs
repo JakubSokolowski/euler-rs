@@ -11,25 +11,33 @@ impl FlatMatrix {
     pub fn new(values: Vec<usize>) -> FlatMatrix {
         let width = (values.len() as f64).sqrt() as usize;
         let height = width;
-        FlatMatrix { values, width, height }
+
+        FlatMatrix {
+            width,
+            height,
+            values,
+        }
     }
 
     fn get_index(&self, row: usize, column: usize) -> usize {
-        return row * self.width + column;
+        row * self.width + column
     }
 
     fn max_group(&self, size: usize) -> usize {
-        vec![
+        *vec![
             self.max_vertical(size),
             self.max_horizontal(size),
             self.max_diag_left(size),
-            self.max_diag_right(size)
-        ].iter().max().unwrap().clone()
+            self.max_diag_right(size),
+        ]
+        .iter()
+        .max()
+        .unwrap()
     }
 
     fn get_value(&self, row: usize, column: usize) -> usize {
         match self.values.get(self.get_index(row, column)) {
-            Some(v) => v.clone(),
+            Some(v) => *v,
             None => {
                 // this is a hack as i cannot be bothered to check bounds
                 // and limit the possible groups. if the row/column position
@@ -73,51 +81,48 @@ impl FlatMatrix {
     }
 
     fn vertical_group(&self, row: usize, column: usize, size: usize) -> usize {
-        (0..size)
-            .map(|n| self.get_value(row + n, column))
-            .fold(1, |prod, val| prod * val)
+        (0..size).map(|n| self.get_value(row + n, column)).product()
     }
 
-
     fn horizontal_group(&self, row: usize, column: usize, size: usize) -> usize {
-        (0..size)
-            .map(|n| self.get_value(row, column + n))
-            .fold(1, |prod, val| prod * val)
+        (0..size).map(|n| self.get_value(row, column + n)).product()
     }
 
     fn diagonal_down_right(&self, row: usize, column: usize, size: usize) -> usize {
         (0..size)
             .map(|n| self.get_value(row + n, column + n))
-            .fold(1, |prod, val| prod * val)
+            .product()
     }
 
     fn diagonal_down_left(&self, row: usize, column: usize, size: usize) -> usize {
         (0..size)
             .map(|n| {
-                if  column < n{
+                if column < n {
                     1
                 } else {
                     self.get_value(row + n, column - n)
                 }
             })
-            .fold(1, |prod, val| prod * val)
+            .product()
     }
 }
 
-
-pub fn run(input: &Vec<String>) {
+pub fn run(input: &[String]) {
     let parsed = parse(input);
     let matrix = FlatMatrix::new(parsed);
     let group_size = 4;
     let max_product = matrix.max_group(group_size);
-    println!("Max adjacent group product of size {}: {}", group_size, max_product);
+    println!(
+        "Max adjacent group product of size {}: {}",
+        group_size, max_product
+    );
 }
 
-fn parse(input: &Vec<String>) -> Vec<usize> {
+fn parse(input: &[String]) -> Vec<usize> {
     input
         .iter()
         .map(|line| {
-            line.split(" ")
+            line.split(' ')
                 .collect::<Vec<&str>>()
                 .iter()
                 .map(|n| n.parse().unwrap())
@@ -263,4 +268,3 @@ mod tests {
         assert_eq!(res, expected);
     }
 }
-

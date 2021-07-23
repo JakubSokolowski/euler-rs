@@ -1,7 +1,7 @@
 use lazy_static::lazy_static;
-use regex::{Regex, Match};
+use regex::{Match, Regex};
 
-pub fn run(input: &String) {
+pub fn run(input: &str) {
     let mut words = extract_words(input);
     words.sort();
 
@@ -14,15 +14,13 @@ pub fn run(input: &String) {
     println!("Total sum: {}", total)
 }
 
-
 pub fn alphabet_position(c: char) -> usize {
     c.to_ascii_uppercase() as usize - 64
 }
 
 pub fn word_value(word: &str) -> usize {
-    word.chars().map(|c| alphabet_position(c)).sum()
+    word.chars().map(alphabet_position).sum()
 }
-
 
 pub fn extract_words(s: &str) -> Vec<String> {
     lazy_static! {
@@ -30,12 +28,9 @@ pub fn extract_words(s: &str) -> Vec<String> {
     }
 
     RE.find_iter(s)
-        .map(|word: Match| {
-            word.as_str().replace("\"", "")
-        })
+        .map(|word: Match| word.as_str().replace("\"", ""))
         .collect()
 }
-
 
 #[cfg(test)]
 mod tests {
