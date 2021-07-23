@@ -4,7 +4,7 @@ mod common;
 mod problems;
 
 
-use crate::common::data::{read_to_vec};
+use crate::common::data::{read_to_vec, read_to_str};
 
 fn main() {
     let argv: Vec<String> = env::args().collect();
@@ -17,6 +17,7 @@ fn main() {
 
     match problem_num {
         11 => problems::p11_largest_product_in_a_grid::run(&read_to_vec(problem_num)),
+        22 => problems::p22_names_scores::run(&read_to_str(problem_num)),
         _ => panic!("Problem num: {} not implemented", problem_num)
     }
 }

@@ -1,5 +1,5 @@
 use std::fs::File;
-use std::io::{BufReader, BufRead};
+use std::io::{BufReader, BufRead, Read};
 
 const DEFAULT_CAPACITY: usize = 1000;
 
@@ -15,3 +15,13 @@ pub fn read_to_vec(problem_num: u16) -> Vec<String> {
 
     return lines
 }
+
+
+pub fn read_to_str(problem_num: u16) -> String {
+    let data_path = format!("./data/{}.txt", problem_num);
+    let mut fp = File::open(&data_path).expect(&format!("Can't open {}", data_path));
+    let mut buf = String::new();
+    fp.read_to_string(&mut buf).unwrap();
+    return buf;
+}
+
