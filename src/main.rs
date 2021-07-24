@@ -17,6 +17,7 @@ fn main() {
     match problem_num {
         11 => problems::p11_largest_product_in_a_grid::run(&read_to_vec(problem_num)),
         17 => problems::p17_number_letter_counts::run(),
+        19 => problems::p19_counting_sundays::run(),
         22 => problems::p22_names_scores::run(&read_to_str(problem_num)),
         23 => problems::p23_non_abundant_sums::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
