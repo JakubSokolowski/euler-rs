@@ -1,7 +1,5 @@
 pub fn run() {
-    let total: usize = (1..=1000)
-        .map(|n| count_letters(to_letters(n)))
-        .sum();
+    let total: usize = (1..=1000).map(|n| count_letters(to_letters(n))).sum();
 
     println!("Total count: {}", total);
 }
@@ -36,7 +34,7 @@ pub fn to_letters(num: usize) -> String {
         80 => "eighty".to_string(),
         90 => "ninety".to_string(),
         1000 => "one thousand".to_string(),
-        _ => to_letters_compound(num)
+        _ => to_letters_compound(num),
     }
 }
 
@@ -50,16 +48,20 @@ pub fn to_letters_compound(num: usize) -> String {
             let digit_part = num % 10;
             let decimal_part = num - digit_part;
             format!("{}-{}", to_letters(decimal_part), to_letters(digit_part))
-        },
+        }
         100..=999 => {
             let decimal_part = num % 100;
             let hundreds_part = (num - decimal_part) / 100;
             if decimal_part == 0 {
                 format!("{} {}", to_letters(hundreds_part), "hundred")
             } else {
-                format!("{} {} and {}", to_letters(hundreds_part), "hundred", to_letters(decimal_part))
+                format!(
+                    "{} {} and {}",
+                    to_letters(hundreds_part),
+                    "hundred",
+                    to_letters(decimal_part)
+                )
             }
-
         }
         _ => {
             panic!("Number: {} too large", num);
@@ -69,7 +71,7 @@ pub fn to_letters_compound(num: usize) -> String {
 
 #[cfg(test)]
 mod tests {
-    use crate::problems::p17_number_letter_counts::{to_letters, count_letters};
+    use crate::problems::p17_number_letter_counts::{count_letters, to_letters};
 
     #[test]
     fn to_letters_returns_proper_str_representation_for_digit() {
@@ -139,7 +141,7 @@ mod tests {
     #[test]
     fn to_letters_returns_proper_str_representation_for_900() {
         // given
-        let num = 100;
+        let num = 900;
 
         // when
         let result = to_letters(num);
@@ -174,6 +176,4 @@ mod tests {
         let expected = 23;
         assert_eq!(result, expected);
     }
-
-
 }
