@@ -3,3 +3,4 @@ pub mod p17_number_letter_counts;
 pub mod p19_counting_sundays;
 pub mod p22_names_scores;
 pub mod p23_non_abundant_sums;
+pub mod p24_lexicographic_permutations;

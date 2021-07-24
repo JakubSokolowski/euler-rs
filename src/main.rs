@@ -20,6 +20,7 @@ fn main() {
         19 => problems::p19_counting_sundays::run(),
         22 => problems::p22_names_scores::run(&read_to_str(problem_num)),
         23 => problems::p23_non_abundant_sums::run(),
+        24 => problems::p24_lexicographic_permutations::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
     }
 }
