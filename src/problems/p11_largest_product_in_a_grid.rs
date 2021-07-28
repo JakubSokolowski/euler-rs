@@ -183,7 +183,6 @@ mod tests {
         // given
         let nums = (0..16).collect();
         let matrix = FlatMatrix::new(nums);
-        println!("{:?}", matrix);
 
         // when
         let res = matrix.max_vertical(4);
@@ -198,7 +197,6 @@ mod tests {
         // given
         let nums = (0..16).collect();
         let matrix = FlatMatrix::new(nums);
-        println!("{:?}", matrix);
 
         // when
         let res = matrix.max_horizontal(4);
@@ -213,7 +211,6 @@ mod tests {
         // given
         let nums = (0..16).collect();
         let matrix = FlatMatrix::new(nums);
-        println!("{:?}", matrix);
 
         // when
         let res = matrix.max_diag_right(4);
@@ -228,7 +225,6 @@ mod tests {
         // given
         let nums = (0..16).collect();
         let matrix = FlatMatrix::new(nums);
-        println!("{:?}", matrix);
 
         // when
         let res = matrix.max_diag_left(4);
@@ -243,7 +239,6 @@ mod tests {
         // given
         let nums = (0..16).collect();
         let matrix = FlatMatrix::new(nums);
-        println!("{:?}", matrix);
 
         // when
         let res = matrix.max_group(4);
@@ -258,7 +253,6 @@ mod tests {
         // given
         let nums = (0..16).collect();
         let matrix = FlatMatrix::new(nums);
-        println!("{:?}", matrix);
 
         // when
         let res = matrix.max_group(2);
