@@ -23,6 +23,7 @@ fn main() {
         22 => problems::p22_names_scores::run(&read_to_str(problem_num)),
         23 => problems::p23_non_abundant_sums::run(),
         24 => problems::p24_lexicographic_permutations::run(),
+        26 => problems::p26_reciprocal_cycles::run(),
         75 => problems::p75_singular_integer_right_triangles::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
     }
