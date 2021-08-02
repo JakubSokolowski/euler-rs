@@ -93,6 +93,7 @@ dependencies = [
  "chrono",
  "itertools",
  "lazy_static",
+ "num-integer",
  "rayon",
  "regex",
 ]
