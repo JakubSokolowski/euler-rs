@@ -6,4 +6,5 @@ pub mod p23_non_abundant_sums;
 pub mod p24_lexicographic_permutations;
 pub mod p26_reciprocal_cycles;
 pub mod p27_quadratic_primes;
+pub mod p28_number_spiral_diagonals;
 pub mod p75_singular_integer_right_triangles;

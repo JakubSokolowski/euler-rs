@@ -25,6 +25,7 @@ fn main() {
         24 => problems::p24_lexicographic_permutations::run(),
         26 => problems::p26_reciprocal_cycles::run(),
         27 => problems::p27_quadratic_primes::run(),
+        28 => problems::p28_number_spiral_diagonals::run(),
         75 => problems::p75_singular_integer_right_triangles::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
     }
