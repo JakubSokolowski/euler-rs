@@ -27,6 +27,7 @@ fn main() {
         27 => problems::p27_quadratic_primes::run(),
         28 => problems::p28_number_spiral_diagonals::run(),
         29 => problems::p29_distinct_powers::run(),
+        30 => problems::p30_digit_fifth_powers::run(),
         75 => problems::p75_singular_integer_right_triangles::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
     }
