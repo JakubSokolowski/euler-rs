@@ -1,10 +1,13 @@
-use itertools::Itertools;
 use std::collections::HashSet;
+
+use itertools::Itertools;
+
+use crate::primes::factors;
 
 const ABUNDANT_MAX: usize = 28123;
 
 pub fn run() {
-    println!("{:?}", factors(12));
+    println!("{:?}", factors::factors(12));
 
     let all_abundant: Vec<usize> = (1..ABUNDANT_MAX).filter(|&n| is_abundant(n)).collect();
 
@@ -23,25 +26,8 @@ pub fn run() {
     println!("{}", all_that_cannot);
 }
 
-pub fn factors(num: usize) -> Vec<usize> {
-    let mut i: usize = 1;
-    let mut res: Vec<usize> = vec![];
-
-    while i <= (num as f64).sqrt() as usize {
-        if num % i == 0 {
-            res.push(i);
-            if num / i != i {
-                res.push(num / i);
-            }
-        }
-
-        i += 1;
-    }
-    res.into_iter().filter(|&d| d != 1 && d != num).collect()
-}
-
 pub fn factor_sum(num: usize) -> usize {
-    factors(num).iter().sum()
+    factors::factors(num).iter().sum()
 }
 
 pub fn is_abundant(num: usize) -> bool {

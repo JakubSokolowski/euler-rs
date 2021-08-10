@@ -3,8 +3,8 @@
 use std::env;
 
 mod common;
+mod primes;
 mod problems;
-
 use crate::common::data::{read_to_str, read_to_vec};
 
 fn main() {

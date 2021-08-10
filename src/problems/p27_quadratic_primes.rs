@@ -1,5 +1,8 @@
 extern crate test;
+
 use itertools::Itertools;
+
+use crate::primes::is_prime;
 
 pub fn run() {
     find_max_coefficient_product(999, 1000);
@@ -30,23 +33,11 @@ fn find_max_coefficient_product(a_abs_limit: i32, b_abs_limit: i32) -> i32 {
     product
 }
 
-fn is_prime(n: i32) -> bool {
-    let limit = (n as f64).sqrt() as i32;
-
-    for i in 2..=limit {
-        if n % i == 0 {
-            return false;
-        }
-    }
-
-    true
-}
-
 fn num_generated_primes(a: i32, b: i32) -> i32 {
     let mut n = 0;
     loop {
         let maybe_prime = quadratic_formula(a, b, n);
-        if is_prime(maybe_prime.abs()) {
+        if is_prime::is_prime(maybe_prime.abs()) {
             n += 1;
         } else {
             break;
@@ -61,8 +52,9 @@ fn quadratic_formula(a: i32, b: i32, n: i32) -> i32 {
 
 #[cfg(test)]
 mod tests {
-    use super::*;
     use test::Bencher;
+
+    use super::*;
 
     #[test]
     fn test_num_generated_primes_for_a79_b1601() {
