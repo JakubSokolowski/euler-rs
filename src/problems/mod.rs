@@ -8,4 +8,5 @@ pub mod p26_reciprocal_cycles;
 pub mod p27_quadratic_primes;
 pub mod p28_number_spiral_diagonals;
 pub mod p29_distinct_powers;
+pub mod p30_digit_fifth_powers;
 pub mod p75_singular_integer_right_triangles;
