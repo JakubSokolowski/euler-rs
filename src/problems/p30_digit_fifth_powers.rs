@@ -1,22 +1,15 @@
+use crate::positional::digits;
+
 pub fn run() {
     // I guess there is some upper bound for n^5 digits, let's just assume that
     // its below that
     let max = 10000000;
     let power = 5;
     let res: usize = (2..max)
-        .filter(|d| *d == digit_powers_sum(&digits(*d), power))
+        .filter(|d| *d == digit_powers_sum(&digits::digits(*d), power))
         .sum();
 
     println!("{:?}", res)
-}
-
-fn digits(num: usize) -> Vec<usize> {
-    num.to_string()
-        .chars()
-        .map(|d| d.to_digit(10).unwrap() as usize)
-        .collect::<Vec<_>>()
-        .into_iter()
-        .collect()
 }
 
 fn digit_powers_sum(digits: &[usize], power: usize) -> usize {
@@ -33,7 +26,7 @@ mod tests {
         let num = 123;
 
         // when
-        let result = digits(num as usize);
+        let result = digits::digits(num as usize);
 
         // then
         let expected = vec![1, 2, 3];

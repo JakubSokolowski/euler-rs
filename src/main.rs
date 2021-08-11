@@ -3,6 +3,7 @@
 use std::env;
 
 mod common;
+mod positional;
 mod primes;
 mod problems;
 use crate::common::data::{read_to_str, read_to_vec};
@@ -29,6 +30,7 @@ fn main() {
         29 => problems::p29_distinct_powers::run(),
         30 => problems::p30_digit_fifth_powers::run(),
         32 => problems::p32_pandigital_products::run(),
+        33 => problems::p33_digit_cancelling_fractions::run(),
         75 => problems::p75_singular_integer_right_triangles::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
     }
