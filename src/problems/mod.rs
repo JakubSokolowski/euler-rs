@@ -12,4 +12,5 @@ pub mod p30_digit_fifth_powers;
 pub mod p32_pandigital_products;
 pub mod p33_digit_cancelling_fractions;
 pub mod p34_digit_factorials;
+pub mod p35_circular_primes;
 pub mod p75_singular_integer_right_triangles;
