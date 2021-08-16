@@ -31,6 +31,7 @@ fn main() {
         30 => problems::p30_digit_fifth_powers::run(),
         32 => problems::p32_pandigital_products::run(),
         33 => problems::p33_digit_cancelling_fractions::run(),
+        34 => problems::p34_digit_factorials::run(),
         75 => problems::p75_singular_integer_right_triangles::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
     }
