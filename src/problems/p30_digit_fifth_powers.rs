@@ -6,7 +6,7 @@ pub fn run() {
     let max = 10000000;
     let power = 5;
     let res: usize = (2..max)
-        .filter(|d| *d == digit_powers_sum(&digits::digits(*d), power))
+        .filter(|d| *d == digit_powers_sum(&digits::to_digits(*d), power))
         .sum();
 
     println!("{:?}", res)
@@ -21,12 +21,12 @@ mod tests {
     use super::*;
 
     #[test]
-    fn fn_test_digits_splits_number_to_its_digits() {
+    fn test_digits_splits_number_to_its_digits() {
         // given
         let num = 123;
 
         // when
-        let result = digits::digits(num as usize);
+        let result = digits::to_digits(num as usize);
 
         // then
         let expected = vec![1, 2, 3];

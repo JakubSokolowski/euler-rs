@@ -1,10 +1,10 @@
-use crate::positional::digits::digits;
+use crate::positional::digits::to_digits;
 use itertools::Itertools;
 
 pub fn run() {
     let bound = upper_bound();
     let valid_digits: usize = (3..bound)
-        .filter(|d| *d == digits_factorial_sum(&digits(*d)))
+        .filter(|d| *d == digits_factorial_sum(&to_digits(*d)))
         .sum();
 
     println!("{:?}", valid_digits)
@@ -48,7 +48,7 @@ fn factorial(num: usize) -> usize {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::positional::digits::digits;
+    use crate::positional::digits::to_digits;
 
     #[test]
     fn test_upper_bound_returns_proper_bound() {
@@ -79,7 +79,7 @@ mod tests {
         let num: usize = 145;
 
         // when
-        let result = digits_factorial_sum(&digits(num));
+        let result = digits_factorial_sum(&to_digits(num));
 
         // then
         let expected = 145;

@@ -3,7 +3,7 @@ use std::collections::HashSet;
 use itertools::Itertools;
 use num_integer::Integer;
 
-use crate::positional::digits::digits;
+use crate::positional::digits::to_digits;
 
 #[derive(Debug, PartialEq)]
 struct Fraction {
@@ -41,8 +41,8 @@ impl Fraction {
     // 1/2 * 3/5 = 3/15 5/10 * 6/10 = 30/100
 
     pub fn simplify_naive(&self) -> Option<Fraction> {
-        let nom_digits = digits(self.nominator);
-        let denom_digits = digits(self.denominator);
+        let nom_digits = to_digits(self.nominator);
+        let denom_digits = to_digits(self.denominator);
 
         for n in nom_digits.iter() {
             for d in denom_digits.iter() {
