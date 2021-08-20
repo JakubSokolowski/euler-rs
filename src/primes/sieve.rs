@@ -1,3 +1,5 @@
+use std::collections::HashSet;
+
 pub fn e_sieve(bound: usize) -> Vec<usize> {
     let mut primes: Vec<bool> = (0..bound + 1).map(|num| num == 2 || num & 1 != 0).collect();
     let mut num = 3usize;
@@ -33,4 +35,8 @@ mod tests {
         let expected: Vec<usize> = vec![2, 3, 5, 7, 11, 13, 17, 19, 23, 29];
         assert_eq!(expected, result);
     }
+}
+
+pub fn prime_lookup(bound: usize) -> HashSet<usize> {
+    e_sieve(bound).into_iter().collect::<HashSet<usize>>()
 }

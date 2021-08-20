@@ -34,6 +34,7 @@ fn main() {
         34 => problems::p34_digit_factorials::run(),
         35 => problems::p35_circular_primes::run(),
         36 => problems::p36_double_base_palindromes::run(),
+        37 => problems::p37_truncatable_primes::run(),
         75 => problems::p75_singular_integer_right_triangles::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
     }

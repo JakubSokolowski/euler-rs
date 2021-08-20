@@ -1,7 +1,7 @@
 use std::collections::HashSet;
 
 use crate::positional::digits::{from_digits, to_digits};
-use crate::primes::sieve::e_sieve;
+use crate::primes::sieve::prime_lookup;
 
 pub fn run() {
     let upper_bound = 999999;
@@ -11,7 +11,7 @@ pub fn run() {
 }
 
 pub fn count_circular_primes(bound: usize) -> usize {
-    let primes = build_lookup(bound);
+    let primes = prime_lookup(bound);
     primes
         .iter()
         .filter_map(|&p| {
@@ -43,12 +43,10 @@ pub fn get_rotations(num: usize) -> Vec<usize> {
     all_rotations
 }
 
-pub fn build_lookup(bound: usize) -> HashSet<usize> {
-    e_sieve(bound).into_iter().collect::<HashSet<usize>>()
-}
-
 #[cfg(test)]
 mod tests {
+    use crate::primes::sieve::prime_lookup;
+
     use super::*;
 
     #[test]
@@ -81,7 +79,7 @@ mod tests {
     fn test_is_circular_prime_returns_true_for_179() {
         // given
         let num = 197;
-        let lookup = build_lookup(1000);
+        let lookup = prime_lookup(1000);
 
         // when
         let result = is_circular_prime(num, &lookup);
