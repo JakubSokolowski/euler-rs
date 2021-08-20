@@ -15,4 +15,5 @@ pub mod p34_digit_factorials;
 pub mod p35_circular_primes;
 pub mod p36_double_base_palindromes;
 pub mod p37_truncatable_primes;
+pub mod p38_pandigital_multiples;
 pub mod p75_singular_integer_right_triangles;
