@@ -19,4 +19,5 @@ pub mod p38_pandigital_multiples;
 pub mod p39_integer_right_triangles;
 pub mod p41_pandigital_prime;
 pub mod p42_coded_triangle_numbers;
+pub mod p43_sub_string_divisibility;
 pub mod p75_singular_integer_right_triangles;

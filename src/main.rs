@@ -43,6 +43,7 @@ fn main() {
         39 => problems::p39_integer_right_triangles::run(),
         41 => problems::p41_pandigital_prime::run(),
         42 => problems::p42_coded_triangle_numbers::run(&read_to_str(problem_num)),
+        43 => problems::p43_sub_string_divisibility::run(),
         75 => problems::p75_singular_integer_right_triangles::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
     }
