@@ -6,6 +6,8 @@ mod common;
 mod positional;
 mod primes;
 mod problems;
+mod words;
+
 use crate::common::data::{read_to_str, read_to_vec};
 
 fn main() {
@@ -40,6 +42,7 @@ fn main() {
         38 => problems::p38_pandigital_multiples::run(),
         39 => problems::p39_integer_right_triangles::run(),
         41 => problems::p41_pandigital_prime::run(),
+        42 => problems::p42_coded_triangle_numbers::run(&read_to_str(problem_num)),
         75 => problems::p75_singular_integer_right_triangles::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
     }
