@@ -9,6 +9,7 @@ mod problems;
 use crate::common::data::{read_to_str, read_to_vec};
 
 fn main() {
+    use std::time::Instant;
     let argv: Vec<String> = env::args().collect();
 
     if argv.len() != 2 {
@@ -16,6 +17,7 @@ fn main() {
     }
 
     let problem_num: u16 = argv[1].parse().expect("Problem num must be a number");
+    let now = Instant::now();
 
     match problem_num {
         11 => problems::p11_largest_product_in_a_grid::run(&read_to_vec(problem_num)),
@@ -37,7 +39,10 @@ fn main() {
         37 => problems::p37_truncatable_primes::run(),
         38 => problems::p38_pandigital_multiples::run(),
         39 => problems::p39_integer_right_triangles::run(),
+        41 => problems::p41_pandigital_prime::run(),
         75 => problems::p75_singular_integer_right_triangles::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
     }
+    let elapsed = now.elapsed();
+    println!("\nFinished in: {:.2?}", elapsed);
 }
