@@ -8,11 +8,7 @@ pub fn run() {
         .filter(|p| is_pentagonal((p.0 + p.1).abs()) && is_pentagonal((p.0 - p.1).abs()))
         .collect();
 
-    let smallest = pentagonal
-        .iter()
-        .map(|p| (p.0 - p.1).abs())
-        .min()
-        .unwrap();
+    let smallest = pentagonal.iter().map(|p| (p.0 - p.1).abs()).min().unwrap();
 
     println!("{} {:?}", pairs.len(), pentagonal);
     println!("Smallest: {} ", smallest);
@@ -30,7 +26,8 @@ pub fn is_pentagonal(num: i32) -> bool {
 pub fn smallest_difference_pairs(num_pentagonal: i32) -> Vec<(i32, i32)> {
     (1..=num_pentagonal)
         .map(nth_pentagonal)
-        .permutations(2).map(|perm| (perm[0], perm[1]))
+        .permutations(2)
+        .map(|perm| (perm[0], perm[1]))
         .sorted_by(|p1, p2| {
             let p1_diff = p1.1 - p1.0;
             let p2_diff = p2.1 - p2.0;
@@ -78,7 +75,7 @@ mod tests {
         let result = smallest_difference_pairs(num);
 
         // then
-        let expected = vec! [(1, 5), (5, 1), (5, 12), (12, 5), (1, 12), (12, 1)];
+        let expected = vec![(1, 5), (5, 1), (5, 12), (12, 5), (1, 12), (12, 1)];
         assert_eq!(result, expected);
     }
 
