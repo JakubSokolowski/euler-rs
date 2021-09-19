@@ -47,6 +47,7 @@ fn main() {
         44 => problems::p44_pentagon_numbers::run(),
         45 => problems::p45_triangular_pentagonal_and_hexagonal::run(),
         46 => problems::p46_goldbachs_other_conjecture::run(),
+        47 => problems::p47_distinct_primes_factors::run(),
         75 => problems::p75_singular_integer_right_triangles::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
     }
