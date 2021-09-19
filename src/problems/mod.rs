@@ -22,4 +22,5 @@ pub mod p42_coded_triangle_numbers;
 pub mod p43_sub_string_divisibility;
 pub mod p44_pentagon_numbers;
 pub mod p45_triangular_pentagonal_and_hexagonal;
+pub mod p46_goldbachs_other_conjecture;
 pub mod p75_singular_integer_right_triangles;
