@@ -51,6 +51,7 @@ fn main() {
         46 => problems::p46_goldbachs_other_conjecture::run(),
         47 => problems::p47_distinct_primes_factors::run(),
         49 => problems::p49_prime_permutations::run(),
+        50 => problems::p50_consecutive_prime_sum::run(),
         75 => problems::p75_singular_integer_right_triangles::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
     }
