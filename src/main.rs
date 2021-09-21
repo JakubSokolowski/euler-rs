@@ -34,6 +34,7 @@ fn main() {
         29 => problems::p29_distinct_powers::run(),
         30 => problems::p30_digit_fifth_powers::run(),
         32 => problems::p32_pandigital_products::run(),
+        31 => problems::p31_coin_sums::run(),
         33 => problems::p33_digit_cancelling_fractions::run(),
         34 => problems::p34_digit_factorials::run(),
         35 => problems::p35_circular_primes::run(),

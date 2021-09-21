@@ -9,6 +9,7 @@ pub mod p27_quadratic_primes;
 pub mod p28_number_spiral_diagonals;
 pub mod p29_distinct_powers;
 pub mod p30_digit_fifth_powers;
+pub mod p31_coin_sums;
 pub mod p32_pandigital_products;
 pub mod p33_digit_cancelling_fractions;
 pub mod p34_digit_factorials;
