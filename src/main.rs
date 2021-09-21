@@ -42,6 +42,7 @@ fn main() {
         37 => problems::p37_truncatable_primes::run(),
         38 => problems::p38_pandigital_multiples::run(),
         39 => problems::p39_integer_right_triangles::run(),
+        40 => problems::p40_champernownes_constant::run(),
         41 => problems::p41_pandigital_prime::run(),
         42 => problems::p42_coded_triangle_numbers::run(&read_to_str(problem_num)),
         43 => problems::p43_sub_string_divisibility::run(),
