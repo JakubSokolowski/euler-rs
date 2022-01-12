@@ -1,4 +1,5 @@
 #![feature(test)]
+#![feature(int_log)]
 
 use std::env;
 
@@ -52,6 +53,7 @@ fn main() {
         47 => problems::p47_distinct_primes_factors::run(),
         49 => problems::p49_prime_permutations::run(),
         50 => problems::p50_consecutive_prime_sum::run(),
+        51 => problems::p51_prime_digit_replacements::run(),
         75 => problems::p75_singular_integer_right_triangles::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
     }

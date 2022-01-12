@@ -28,4 +28,5 @@ pub mod p46_goldbachs_other_conjecture;
 pub mod p47_distinct_primes_factors;
 pub mod p49_prime_permutations;
 pub mod p50_consecutive_prime_sum;
+pub mod p51_prime_digit_replacements;
 pub mod p75_singular_integer_right_triangles;

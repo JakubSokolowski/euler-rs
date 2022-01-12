@@ -121,14 +121,13 @@ pub fn run(input: &[String]) {
 fn parse(input: &[String]) -> Vec<usize> {
     input
         .iter()
-        .map(|line| {
+        .flat_map(|line| {
             line.split(' ')
                 .collect::<Vec<&str>>()
                 .iter()
                 .map(|n| n.parse().unwrap())
                 .collect::<Vec<usize>>()
         })
-        .flatten()
         .collect::<Vec<usize>>()
 }
 

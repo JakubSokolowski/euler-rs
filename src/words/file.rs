@@ -7,6 +7,6 @@ pub fn extract_words(s: &str) -> Vec<String> {
     }
 
     RE.find_iter(s)
-        .map(|word: Match| word.as_str().replace("\"", ""))
+        .map(|word: Match| word.as_str().replace('\"', ""))
         .collect()
 }
