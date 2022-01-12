@@ -12,7 +12,7 @@ pub fn run() {
             let num = d.iter().map(|d| d.to_string()).join("");
             triple_split_permutations(&num).into_iter()
         })
-        .filter(|t| is_pandigital_triplet(t))
+        .filter(is_pandigital_triplet)
         .collect();
 
     let uniq_products: HashSet<usize> = triplets.iter().map(|t| t.2).collect();
