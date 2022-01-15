@@ -54,6 +54,7 @@ fn main() {
         49 => problems::p49_prime_permutations::run(),
         50 => problems::p50_consecutive_prime_sum::run(),
         51 => problems::p51_prime_digit_replacements::run(),
+        52 => problems::p52_permuted_multiples::run(),
         75 => problems::p75_singular_integer_right_triangles::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
     }
