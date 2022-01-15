@@ -30,4 +30,5 @@ pub mod p49_prime_permutations;
 pub mod p50_consecutive_prime_sum;
 pub mod p51_prime_digit_replacements;
 pub mod p52_permuted_multiples;
+pub mod p53_combinatoric_selections;
 pub mod p75_singular_integer_right_triangles;

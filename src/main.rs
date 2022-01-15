@@ -3,6 +3,7 @@
 
 use std::env;
 
+mod combinatorics;
 mod common;
 mod positional;
 mod primes;
@@ -55,6 +56,7 @@ fn main() {
         50 => problems::p50_consecutive_prime_sum::run(),
         51 => problems::p51_prime_digit_replacements::run(),
         52 => problems::p52_permuted_multiples::run(),
+        53 => problems::p53_combinatoric_selections::run(),
         75 => problems::p75_singular_integer_right_triangles::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
     }
