@@ -114,6 +114,3 @@ mod tests {
         assert_eq!(expected, result);
     }
 }
-
-// split iter
-// for i 1..len - split.len
