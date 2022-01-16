@@ -261,7 +261,7 @@ pub fn count_winners(lines: &[String]) -> usize {
 
 pub fn run(lines: &[String]) {
     let count = count_winners(lines);
-    println!("Player 1 won: {}", count);
+    println!("Player 1 won: {} times", count);
 }
 
 #[cfg(test)]
