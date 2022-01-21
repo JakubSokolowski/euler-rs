@@ -33,4 +33,5 @@ pub mod p52_permuted_multiples;
 pub mod p53_combinatoric_selections;
 pub mod p54_poker_hands;
 pub mod p55_lychrel_numbers;
+pub mod p57_square_roots_convergents;
 pub mod p75_singular_integer_right_triangles;

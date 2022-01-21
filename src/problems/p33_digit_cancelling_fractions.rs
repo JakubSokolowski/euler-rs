@@ -1,86 +1,61 @@
 use std::collections::HashSet;
 
 use itertools::Itertools;
-use num_integer::Integer;
+use num::ToPrimitive;
 
+use crate::fractions::Fraction;
 use crate::positional::digits::to_digits;
 
-#[derive(Debug, PartialEq)]
-struct Fraction {
-    nominator: usize,
-    denominator: usize,
-}
+pub fn run() {
+    let mut fractions: Vec<Fraction> = vec![];
 
-impl Fraction {
-    pub fn new(nominator: usize, denominator: usize) -> Fraction {
-        Fraction {
-            nominator,
-            denominator,
-        }
-    }
-
-    pub fn multiply(&self, other: &Fraction) -> Fraction {
-        let nominator = self.nominator * other.nominator;
-        let denominator = self.denominator * other.denominator;
-        Fraction {
-            nominator,
-            denominator,
-        }
-    }
-
-    pub fn simplify(&self) -> Fraction {
-        let gcd = self.denominator.gcd(&self.nominator);
-        let denominator = self.denominator / gcd;
-        let nominator = self.nominator / gcd;
-        Fraction {
-            nominator,
-            denominator,
-        }
-    }
-
-    // 1/2 * 3/5 = 3/15 5/10 * 6/10 = 30/100
-
-    pub fn simplify_naive(&self) -> Option<Fraction> {
-        let nom_digits = to_digits(self.nominator);
-        let denom_digits = to_digits(self.denominator);
-
-        for n in nom_digits.iter() {
-            for d in denom_digits.iter() {
-                if n == d {
-                    let common = first_common(&nom_digits, &denom_digits).unwrap();
-                    let is_trivial = common == 0;
-
-                    if is_trivial {
-                        return None;
-                    }
-
-                    let nominator = nom_digits
-                        .iter()
-                        .find_or_first(|digit| **digit != common)
-                        .unwrap();
-                    let denominator = denom_digits
-                        .iter()
-                        .find_or_first(|digit| **digit != common)
-                        .unwrap();
-                    return Some(Fraction {
-                        nominator: *nominator,
-                        denominator: *denominator,
-                    });
-                }
+    for n in 10..=98 {
+        for d in n + 1..99 {
+            let f = Fraction::from_num(n, d);
+            if is_naive_simplify_correct(&f) {
+                fractions.push(f)
             }
         }
-
-        None
     }
 
-    pub fn is_naive_simplify_correct(&self) -> bool {
-        let naive = self.simplify_naive();
+    println!("Correctly simplified: {:?}", fractions);
+    let product = fractions.into_iter().reduce(|a, b| a.multiply(b)).unwrap();
+    let simple_product = product.simplify();
 
-        match naive {
-            Some(f) => self.simplify() == f.simplify(),
-            None => false,
+    println!("Product: {:?}", product);
+    println!("Simplified product: {:?}", simple_product);
+}
+
+pub fn simplify_naive(fraction: &Fraction) -> Option<Fraction> {
+    let nom_digits = to_digits(fraction.nominator.to_usize().unwrap());
+    let denom_digits = to_digits(fraction.denominator.to_usize().unwrap());
+
+    for n in nom_digits.iter() {
+        for d in denom_digits.iter() {
+            if n == d {
+                let common = first_common(&nom_digits, &denom_digits).unwrap();
+                let is_trivial = common == 0;
+
+                if is_trivial {
+                    return None;
+                }
+
+                let nominator = nom_digits
+                    .iter()
+                    .find_or_first(|digit| **digit != common)
+                    .unwrap();
+
+                let denominator = denom_digits
+                    .iter()
+                    .find_or_first(|digit| **digit != common)
+                    .unwrap();
+
+                return Some(Fraction::from_num(*nominator, *denominator));
+            }
         }
     }
+
+    None
 }
 
 fn first_common(a: &[usize], b: &[usize]) -> Option<usize> {
@@ -91,76 +66,42 @@ fn first_common(a: &[usize], b: &[usize]) -> Option<usize> {
     common.first().map(|x| ***x)
 }
 
-pub fn run() {
-    let mut fractions: Vec<Fraction> = vec![];
+pub fn is_naive_simplify_correct(fraction: &Fraction) -> bool {
+    let naive = simplify_naive(fraction);
 
-    for n in 10..=98 {
-        for d in n + 1..99 {
-            let f = Fraction::new(n, d);
-            if f.is_naive_simplify_correct() {
-                fractions.push(f)
-            }
-        }
+    match naive {
+        Some(f) => fraction.simplify() == f.simplify(),
+        None => false,
     }
-
-    println!("Correctly simplified: {:?}", fractions);
-    let product = fractions.into_iter().reduce(|a, b| a.multiply(&b)).unwrap();
-    let simple_product = product.simplify();
-
-    println!("Product: {:?}", product);
-    println!("Simplified product: {:?}", simple_product);
 }
 
 #[cfg(test)]
 mod tests {
-    use crate::problems::p33_digit_cancelling_fractions::Fraction;
-
-    #[test]
-    fn test_simplify_returns_simplified_fraction_when_fraction_can_be_simplified() {
-        // given
-        let a = Fraction::new(9, 27);
-
-        // when
-        let result = a.simplify();
-
-        // then
-        let expected = Fraction::new(1, 3);
-        assert_eq!(expected, result);
-    }
-
-    #[test]
-    fn test_simplify_returns_initial_fraction_when_fraction_cannot_be_simplified() {
-        // given
-        let a = Fraction::new(4, 7);
-
-        // when
-        let result = a.simplify();
-
-        // then
-        let expected = Fraction::new(4, 7);
-        assert_eq!(expected, result);
-    }
+    use crate::fractions::Fraction;
+    use crate::problems::p33_digit_cancelling_fractions::{
+        is_naive_simplify_correct, simplify_naive,
+    };
 
     #[test]
     fn test_simplify_naive_returns_fraction_without_common_digit() {
         // given
-        let a = Fraction::new(49, 98);
+        let a = Fraction::from_num(49, 98);
 
         // when
-        let result = a.simplify_naive().unwrap();
+        let result = simplify_naive(&a).unwrap();
 
         // then
-        let expected = Fraction::new(4, 8);
+        let expected = Fraction::from_num(4, 8);
         assert_eq!(expected, result);
     }
 
     #[test]
     fn test_simplify_naive_returns_none_when_nom_and_denom_have_no_common_digits() {
         // given
-        let a = Fraction::new(45, 67);
+        let a = Fraction::from_num(45, 67);
 
         // when
-        let result = a.simplify_naive();
+        let result = simplify_naive(&a);
 
         // then
         let expected = None;
@@ -170,10 +111,10 @@ mod tests {
     #[test]
     fn test_simplify_naive_returns_none_for_trivial_cases() {
         // given
-        let a = Fraction::new(30, 50);
+        let a = Fraction::from_num(30, 50);
 
         // when
-        let result = a.simplify_naive();
+        let result = simplify_naive(&a);
 
         // then
         let expected = None;
@@ -184,10 +125,10 @@ mod tests {
     fn test_is_naive_simplify_correct_returns_true_when_naive_simplification_returns_correct_result(
     ) {
         // given
-        let a = Fraction::new(49, 98);
+        let a = Fraction::from_num(49, 98);
 
         // when
-        let result = a.is_naive_simplify_correct();
+        let result = is_naive_simplify_correct(&a);
 
         // then
         let expected = true;
@@ -198,10 +139,10 @@ mod tests {
     fn test_is_naive_simplify_correct_returns_false_when_naive_simplification_returns_incorrect_result(
     ) {
         // given
-        let a = Fraction::new(45, 75);
+        let a = Fraction::from_num(45, 75);
 
         // when
-        let result = a.is_naive_simplify_correct();
+        let result = is_naive_simplify_correct(&a);
 
         // then
         let expected = false;
