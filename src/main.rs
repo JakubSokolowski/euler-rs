@@ -5,6 +5,7 @@ use std::env;
 
 mod combinatorics;
 mod common;
+mod fractions;
 mod positional;
 mod primes;
 mod problems;
@@ -59,6 +60,7 @@ fn main() {
         53 => problems::p53_combinatoric_selections::run(),
         54 => problems::p54_poker_hands::run(&read_to_vec(problem_num)),
         55 => problems::p55_lychrel_numbers::run(),
+        57 => problems::p57_square_roots_convergents::run(),
         75 => problems::p75_singular_integer_right_triangles::run(),
         _ => panic!("Problem num: {} not implemented", problem_num),
     }

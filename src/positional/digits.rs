@@ -12,6 +12,10 @@ pub fn to_digits(num: usize) -> Vec<usize> {
     iter_digits(num).collect()
 }
 
+pub fn num_of_digits(num: usize) -> usize {
+    num.log10() as usize + 1
+}
+
 pub fn from_digits(digits: &[usize]) -> usize {
     digits
         .iter()

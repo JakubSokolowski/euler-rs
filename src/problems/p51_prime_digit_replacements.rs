@@ -2,7 +2,7 @@ use std::collections::HashSet;
 
 use itertools::Itertools;
 
-use crate::positional::digits::to_digits;
+use crate::positional::digits::{num_of_digits, to_digits};
 use crate::primes::sieve::prime_lookup;
 
 pub fn run() {
@@ -44,10 +44,6 @@ fn replace_digit(prime: usize, index: usize, digit: usize) -> usize {
 
 fn nth_digit(num: usize, n: usize) -> usize {
     num / 10_usize.pow((num_of_digits(num) - 1 - n) as u32) % 10
-}
-
-fn num_of_digits(num: usize) -> usize {
-    num.log10() as usize + 1
 }
 
 fn count_prime_replacements(
